@@ -6,11 +6,13 @@ import kr.co.hucloud.batch.job.print.now.date.dao.PrintNowDateDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
 public class PrintNowDateBizImpl implements PrintNowDateBiz {
 
-	@Autowired
 	private PrintNowDateDAO printNowDAO;
+	
+	public void setPrintNowDAO(PrintNowDateDAO printNowDAO) {
+		this.printNowDAO = printNowDAO;
+	}
 	
 	@Override
 	public String getNowDate() {
