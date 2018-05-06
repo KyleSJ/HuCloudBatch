@@ -14,8 +14,8 @@
 	       destroy-method="close">
 	    <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 	    <property name="url" value="jdbc:oracle:thin:@localhost:1521:XE" />
-	    <property name="username" value="" />
-	    <property name="password" value="" />
+	    <property name="username" value="meeting" />
+	    <property name="password" value="meeting" />
 	</bean>
 	
     <bean   id="sqlSessionFactory"

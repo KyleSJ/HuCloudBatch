@@ -3,17 +3,6 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean	id="stockJob"
-			class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
-		<property name="jobClass" value="kr.co.hucloud.batch.job.stock.StockJob" />		
-	</bean>
-	
-	<bean	id="stockJobTrigger"
-			class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-		<property name="jobDetail" ref="stockJob" />
-		<property name="cronExpression" value="0/10 * * * * ?" />		
-	</bean>
-	
 	<bean	id="matchingJob"
 			class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
 		<property name="jobClass" value="kr.co.hucloud.batch.job.matching.MatchingJob"/>
@@ -25,21 +14,9 @@
 		<property name="cronExpression" value="0/10 * * * * ?" />		
 	</bean>
 
-	<bean 	id="printNowDate" 
-			class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
-		<property name="jobClass" value="kr.co.hucloud.batch.job.print.now.date.PrintNowDateJob"  />
-	</bean>
-	
-	<bean 	id="cronTrigger1" 
-			class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-		<property name="jobDetail" ref="printNowDate"/>
-		<property name="cronExpression" value="0/10 * * * * ?"/>
-	</bean>
-	
 	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="triggers">
 			<list>
-				<ref bean="cronTrigger1" />
 				<ref bean="matchingJobTrigger" />
 			</list>
 		</property>
