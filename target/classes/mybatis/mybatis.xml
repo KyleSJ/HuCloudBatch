@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+         "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<typeAliases>
+		<typeAlias type="kr.co.hucloud.batch.job.matching.vo.MemberVO" alias="MemberVO" />
+		<typeAlias type="kr.co.hucloud.batch.job.matching.vo.PreferStyleVO" alias="PreferStyleVO" />
+		<typeAlias type="kr.co.hucloud.batch.job.matching.vo.StyleVO" alias="StyleVO" />
+		<typeAlias type="kr.co.hucloud.batch.job.matching.vo.MatchingTeamVO" alias="MatchingTeamVO" />
+		<typeAlias type="kr.co.hucloud.batch.job.matching.vo.MatchingTeamMemberVO" alias="MatchingTeamMemberVO" />
+	</typeAliases>
+
+    <mappers>
+        
+        <mapper resource="./mybatis/printNowDateDAO.xml"/>
+        <mapper resource="./mybatis/MatchingDao.xml"/>
+        
+    </mappers>
+    
+</configuration>

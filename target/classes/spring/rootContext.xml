@@ -14,14 +14,14 @@
 	       destroy-method="close">
 	    <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 	    <property name="url" value="jdbc:oracle:thin:@localhost:1521:XE" />
-	    <property name="username" value="STOCK" />
-	    <property name="password" value="stock" />
+	    <property name="username" value="" />
+	    <property name="password" value="" />
 	</bean>
 	
     <bean   id="sqlSessionFactory"
        		class="org.mybatis.spring.SqlSessionFactoryBean">
 	    <property name="dataSource" ref="dataSource" />
-	    <property name="configLocation" value="/mybatis.xml" />
+	    <property name="configLocation" value="classpath:/mybatis/mybatis.xml" />
 	</bean>
 	
     <bean  id="sqlSessionTemplate"

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="MatchingDao">
+  	<select id="selectAllMaleList" resultType="MemberVO">
+  		SELECT	MEMBER_ID memberId
+  				, USER_ID userId
+  				, NICKNAME
+  				, GENDER
+ 		FROM	MEMBER
+ 		WHERE	GENDER = 'M'
+ 		AND		INVITABLE = 'yes'
+  	</select>
+  	
+  	<select id="selectAllFemaleList" resultType="MemberVO">
+  		SELECT	MEMBER_ID memberId
+  				, USER_ID userId
+  				, NICKNAME
+  				, GENDER
+ 		FROM	MEMBER
+ 		WHERE	GENDER = 'F'
+ 		AND		INVITABLE = 'yes'
+  	</select>
+  	
+  	<select id="selectAllTeamListByGenderAndNOP" resultType="MatchingTeamVO" parameterType="map">
+  	
+  		SELECT	MATCHING_TEAM_ID matchingTeamId
+  				, TEAM_NOP teamNOP
+  				, INVITE
+  				, TEAM_GENDER teamGender
+  				, MATCHING_TEAM_NAME matchingTeamName
+  				, MATCHING_TEAM_MASTER matchingTeamMaster
+  		FROM	MATCHING_TEAM
+  		WHERE	TEAM_GENDER = #{gender}
+  		AND		TEAM_NOP = #{nop}
+  		AND		INVITE = 'yes'
+  		AND		MATCHING_STATUS = 'no'
+  	
+  	</select>
+  	
+  	<select id="selectTeamMember" resultType="MatchingTeamMemberVO" parameterType="_int">
+  	
+  		SELECT	MATCHING_TEAM_ID matchingTeamId
+  				, MEMBER_ID memberId
+  		FROM	MATCHING_TEAM_MEMBER
+  		WHERE	MATCHING_TEAM_ID = #{matchingTeamId}
+  	
+  	</select>
+  	
+  	<select id="selectStyleList" parameterType="_int" resultType="_int">
+  	
+  		SELECT	STYLE_ID
+  		FROM	MEMBER_STYLE
+  		WHERE	MEMBER_ID = #{memberId}
+  	
+  	</select>
+  	
+  	<select id="selectPreferStyleList" parameterType="_int" resultType="_int">
+  	
+  		SELECT	STYLE_ID
+  		FROM	PREFER_STYLE
+  		WHERE	MEMBER_ID = #{memberId}
+  	
+  	</select>
+  	
+  	<insert id="insertSoloMatching" parameterType="map">
+  		INSERT
+  		INTO	SOLO_MATCHING
+  				(
+  					SOLO_MATCHING_ID
+  					, F_MEMBER_ID
+  					, M_MEMBER_ID
+  				)
+  		VALUES	(
+  					SOLO_MATCHING_ID_SEQ.NEXTVAL
+  					, #{fMemberId}
+  					, #{mMemberId}
+  				)
+  	</insert>
+  	
+  	<insert id="insertMatching" parameterType="map">
+  	
+  		INSERT
+  		INTO	TEAM_MATCHING
+  				(
+  					TEAM_MATCHING_ID
+  					, F_MATCHING_TEAM_ID
+  					, M_MATCHING_TEAM_ID
+  					, MATCHING_NOP
+  				)
+  		VALUES	(
+  					TEAM_MATCHING_ID_SEQ.NEXTVAL
+  					, #{fMatchingTeamId}
+  					, #{mMatchingTeamId}
+  					, #{nop}
+  				)
+  	
+  	</insert>
+  	
+  	<update id="updateInvitableNo" parameterType="_int">
+  		UPDATE	MEMBER
+  		SET		INVITABLE = 'no'
+  		WHERE	MEMBER_ID = #{memberId}
+  	</update>
+  	
+  	<update id="updateTeamMatchingStatusYes" parameterType="_int">
+  	
+  		UPDATE	MATCHING_TEAM
+  		SET		MATCHING_STATUS = 'yes'
+  		WHERE	MATCHING_TEAM_ID = #{matchingTeamId}
+  	
+  	</update>
+  	
+ </mapper>

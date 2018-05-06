@@ -13,4 +13,14 @@
 		<property name="printNowDAO"	ref="printNowDateDao" />
 	</bean>
 	
+	<bean	id="matchingService"
+			class="kr.co.hucloud.batch.job.matching.service.MatchingServiceImpl">
+		<property	name="matchingDao"	ref="matchingDao" />
+	</bean>
+	
+	<bean	id="matchingDao"
+			class="kr.co.hucloud.batch.job.matching.dao.MatchingDaoImpl">
+		<property	name="sqlSessionTemplate" ref="sqlSessionTemplate" />		
+	</bean>
+	
 </beans>
